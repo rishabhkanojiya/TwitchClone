@@ -27,6 +27,3 @@ const App = () => {
 };
 
 export default App;
-
-// ClientID:
-// 44004226974-qrcq6685udhvtjlmp8d1uh5oehalbf2b.apps.googleusercontent.com

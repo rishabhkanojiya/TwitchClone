@@ -38,9 +38,9 @@ const Header = () => {
               </Link>
             </li>
           </ul>
-          <Link className="nav-link text-danger" to="#">
+          <div className="pr-4 pt-1">
             <GoogleAuth />
-          </Link>
+          </div>
         </div>
       </nav>
     </div>
