@@ -32,7 +32,13 @@ class GoogleAuth extends Component {
     } else if (this.state.isSignedIn) {
       return (
         <div>
-          <a name="" id="" className="btn btn-danger " href="#" role="button">
+          <a
+            onClick={() => {
+              this.auth.signOut();
+            }}
+            className="btn btn-danger text-light"
+            role="button"
+          >
             <i className="fa fa-google pr-3" aria-hidden="true" />
             Sign Out
           </a>
@@ -41,7 +47,13 @@ class GoogleAuth extends Component {
     } else {
       return (
         <div>
-          <a name="" id="" className="btn btn-danger " href="#" role="button">
+          <a
+            onClick={() => {
+              this.auth.signIn();
+            }}
+            className="btn btn-danger text-light"
+            role="button"
+          >
             <i className="fa fa-google pr-3" aria-hidden="true" />
             Sign In With Google
           </a>
