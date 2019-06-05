@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 
 class StreamCreate extends Component {
-  renderOutput = ({ input, label }) => {
+  renderError = ({ error, touched }) => {
+    if (touched && error) {
+      return error;
+    }
+  };
+  renderOutput = ({ input, label, meta }) => {
     return (
       <div className="form-group">
         <label htmlFor="">{label}</label>
@@ -12,9 +17,11 @@ class StreamCreate extends Component {
           className="form-control"
           aria-describedby="helpId"
           placeholder=""
+          autoComplete="off"
         />
-        <small id="helpId" className="form-text text-muted">
-          Help text
+
+        <small id="helpId" className="form-text text-danger ">
+          {this.renderError(meta)}
         </small>
       </div>
     );
@@ -51,6 +58,20 @@ class StreamCreate extends Component {
   }
 }
 
+const validate = formValues => {
+  const error = {};
+
+  if (!formValues.title) {
+    error.title = "You must enter a title";
+  }
+  if (!formValues.description) {
+    error.description = "You must enter a description";
+  }
+
+  return error;
+};
+
 export default reduxForm({
-  form: "streamCreate"
+  form: "streamCreate",
+  validate
 })(StreamCreate);
