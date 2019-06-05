@@ -5,7 +5,7 @@ import GoogleAuth from "./GoogleAuth";
 const Header = () => {
   return (
     <div>
-      <nav className="navbar navbar-expand-sm navbar-light bg-light">
+      <nav className="navbar navbar-expand-sm navbar-light bg-light ">
         <Link className="navbar-brand" to="/">
           Navbar
         </Link>
@@ -33,8 +33,8 @@ const Header = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="#">
-                Link
+              <Link className="nav-link" to="/streams/new">
+                Create
               </Link>
             </li>
           </ul>
