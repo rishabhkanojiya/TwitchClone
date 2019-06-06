@@ -6,8 +6,13 @@ const Header = () => {
   return (
     <div>
       <nav className="navbar navbar-expand-sm navbar-light bg-light ">
-        <Link className="navbar-brand" to="/">
-          Navbar
+        <Link
+          className="navbar-brand d-flex h-20 align-items-center"
+          style={{ color: "#835E8C" }}
+          to="/"
+        >
+          <i className="fa fa-twitch mr-2 fa-2x" aria-hidden="true" />
+          Clone
         </Link>
         <button
           className="navbar-toggler d-lg-none"

@@ -73,8 +73,6 @@ const validate = formValues => {
   return error;
 };
 
-const mapStateToProps = () => {};
-
 export default connect(
   null,
   { createStream }
