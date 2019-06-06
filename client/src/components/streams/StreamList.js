@@ -1,42 +1,65 @@
 import React, { Component } from "react";
 import { fetchStreams } from "../../actions";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 class StreamList extends Component {
   componentDidMount() {
     this.props.fetchStreams();
   }
-  renderAdmin = userId => {
-    if (userId === this.props.currentUserId) {
+
+  renderAdmin = stream => {
+    if (stream.userId === this.props.currentUserId) {
       return (
         <div>
-          <button type="button" className="btn btn-success px-4 ">
+          <Link
+            className="btn btn-success px-4"
+            to={`/streams/edit/${stream.id}`}
+            role="button"
+          >
             Edit
-          </button>
-          <button type="button" className="btn btn-danger px-3 ml-2">
+          </Link>
+          <Link className="btn btn-danger px-3 ml-2 " to="#" role="button">
             Delete
-          </button>
+          </Link>
         </div>
       );
     }
   };
 
-  renderList = () => {
-    return this.props.stream.map(({ id, title, description, userId }) => {
+  renderCreate = () => {
+    if (this.props.isSignedIn) {
       return (
-        <div className="list-group" key={id}>
-          <a
-            href="#"
-            className="list-group-item list-group-item-action flex-column align-items-start mt-2"
+        <div className="d-flex w-100 justify-content-end">
+          <Link
+            className="btn btn-primary m-3 px-5"
+            to="/streams/new"
+            role="button"
           >
-            <div className="d-flex w-100 justify-content-between">
-              <div>
-                <h5 className="mb-1">{title}</h5>
-                <p className="mb-1">{description}</p>
+            Create Stream
+          </Link>
+        </div>
+      );
+    }
+  };
+  renderList = () => {
+    return this.props.stream.map(stream => {
+      return (
+        <div key={stream.id}>
+          <div className="list-group">
+            <li
+              href="#"
+              className="list-group-item list-group-item-action flex-column align-items-start mt-2"
+            >
+              <div className="d-flex w-100 justify-content-between">
+                <div>
+                  <h5 className="mb-1">{stream.title}</h5>
+                  <p className="mb-1">{stream.description}</p>
+                </div>
+                {this.renderAdmin(stream)}
               </div>
-              {this.renderAdmin(userId)}
-            </div>
-          </a>
+            </li>
+          </div>
         </div>
       );
     });
@@ -49,6 +72,7 @@ class StreamList extends Component {
           <hr />
         </div>
         {this.renderList()}
+        <div>{this.renderCreate()}</div>
       </div>
     );
   }
@@ -57,7 +81,8 @@ class StreamList extends Component {
 const mapStateToProps = state => {
   return {
     stream: Object.values(state.stream),
-    currentUserId: state.auth.userId
+    currentUserId: state.auth.userId,
+    isSignedIn: state.auth.isSignedIn
   };
 };
 

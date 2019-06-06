@@ -33,11 +33,6 @@ const Header = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/streams/show">
-                All Streams
-              </Link>
-            </li>
-            <li className="nav-item">
               <Link className="nav-link" to="/streams/new">
                 Create
               </Link>
