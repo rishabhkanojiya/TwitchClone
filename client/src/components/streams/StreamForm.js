@@ -31,7 +31,7 @@ class StreamForm extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col-8 col-sm-5  ">
+          <div className="col-8 col-sm-5">
             <form
               onSubmit={this.props.handleSubmit(formValues =>
                 this.props.onSubmit(formValues)

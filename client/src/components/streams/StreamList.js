@@ -19,7 +19,11 @@ class StreamList extends Component {
           >
             Edit
           </Link>
-          <Link className="btn btn-danger px-3 ml-2 " to="#" role="button">
+          <Link
+            className="btn btn-danger px-3 ml-2 "
+            to={`/streams/delete/${stream.id}`}
+            role="button"
+          >
             Delete
           </Link>
         </div>
@@ -30,14 +34,16 @@ class StreamList extends Component {
   renderCreate = () => {
     if (this.props.isSignedIn) {
       return (
-        <div className="d-flex w-100 justify-content-end">
-          <Link
-            className="btn btn-primary m-3 px-5"
-            to="/streams/new"
-            role="button"
-          >
-            Create Stream
-          </Link>
+        <div className="col-sm-8">
+          <div className="d-flex w-100 justify-content-end">
+            <Link
+              className="btn btn-primary m-3 px-5"
+              to="/streams/new"
+              role="button"
+            >
+              Create Stream
+            </Link>
+          </div>
         </div>
       );
     }
@@ -45,7 +51,7 @@ class StreamList extends Component {
   renderList = () => {
     return this.props.stream.map(stream => {
       return (
-        <div key={stream.id}>
+        <div className="col-sm-8" key={stream.id}>
           <div className="list-group">
             <li
               href="#"
@@ -53,7 +59,12 @@ class StreamList extends Component {
             >
               <div className="d-flex w-100 justify-content-between">
                 <div>
-                  <h5 className="mb-1">{stream.title}</h5>
+                  <Link
+                    to={`/streams/show/${stream.id}`}
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    <h5 className="mb-1">{stream.title}</h5>
+                  </Link>
                   <p className="mb-1">{stream.description}</p>
                 </div>
                 {this.renderAdmin(stream)}
