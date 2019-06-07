@@ -1,12 +1,45 @@
 import React, { Component } from "react";
-import history from "../../history";
+import FlvJs from "flv.js";
 import { fetchStream } from "../../actions";
 import { connect } from "react-redux";
 
 class StreamShow extends Component {
-  componentDidMount() {
-    this.props.fetchStream(this.props.match.params.id);
+  constructor(props) {
+    super(props);
+    this.videoRef = React.createRef();
   }
+
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    this.props.fetchStream(id);
+    this.buildPlayer();
+  }
+
+  componentDidUpdate() {
+    this.buildPlayer();
+  }
+
+  componentWillUnmount() {
+    this.player.destroy();
+  }
+  // ref ref ref
+  // ref ref ref
+  // ref ref ref
+
+  buildPlayer = () => {
+    if (this.player || !this.props.stream) {
+      return;
+    }
+
+    const { id } = this.props.match.params;
+    this.player = FlvJs.createPlayer({
+      type: "flv",
+      url: `http://localhost:8000/live/${id}.flv`
+    });
+    this.player.attachMediaElement(this.videoRef.current);
+    this.player.load();
+  };
+
   renderList = () => {
     return (
       <div className="card ">
@@ -57,7 +90,12 @@ class StreamShow extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col-sm-8">{this.renderCard()}</div>
+          <video
+            ref={this.videoRef}
+            style={{ width: "80%", height: "60%" }}
+            controls
+          />
+          {/* <div className="col-sm-8">{this.renderCard()}</div> */}
           <div className="col-sm-4">{this.renderList()}</div>
         </div>
       </div>
