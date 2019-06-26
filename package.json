@@ -1,0 +1,26 @@
+{
+  "name": "streams",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "npm run start --prefix api",
+    "client": "npm run start --prefix client",
+    "rtmp": "npm run start --prefix rtmpServer",
+    "dev": "concurrently  \"npm run server\" \"npm run client\" \"npm run rtmp\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client && npm install --prefix server && npm install --prefix  rtmp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rishabhkanojiya/twitchClone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rishabhkanojiya/twitchClone/issues"
+  },
+  "homepage": "https://github.com/rishabhkanojiya/twitchClone#readme",
+  "dependencies": {
+    "concurrently": "^4.1.1"
+  }
+}
