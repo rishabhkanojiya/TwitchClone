@@ -7,8 +7,7 @@
     "server": "npm run start --prefix api",
     "client": "npm run start --prefix client",
     "rtmp": "npm run start --prefix rtmpServer",
-    "dev": "concurrently  \"npm run server\" \"npm run client\" \"npm run rtmp\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client && npm install --prefix server && npm install --prefix  rtmp"
+    "start": "concurrently  \"npm run server\" \"npm run client\" \"npm run rtmp\""
   },
   "repository": {
     "type": "git",
